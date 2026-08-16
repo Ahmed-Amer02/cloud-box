@@ -1,0 +1,934 @@
+{
+	"info": {
+		"_postman_id": "a2eb2cbb-e96b-4281-9ad5-0f3b2d59d621",
+		"name": "CloudBox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38738160"
+	},
+	"item": [
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "get file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/files/{fileId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"files",
+								"{fileId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/files/{fileId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"files",
+								"{fileId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "attach tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tagId\" : \"a6d921b7-9e38-4bf1-a147-0671dd5399f0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/files/{fileId}/tags",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"files",
+								"{fileId}",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detach tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/files/{fileId}/tags/{tagId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"files",
+								"{fileId}",
+								"tags",
+								"{tagId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/files/{fileId}/download",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"files",
+								"{fileId}",
+								"download"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/files/{fileId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"files",
+								"{fileId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/files/search",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"files",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Folders",
+			"item": [
+				{
+					"name": "get folders root",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/folders",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"folders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create folder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"hello\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/folders",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"folders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get folder content",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/folders/{folderId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"folders",
+								"{folderId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete folder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/folders/{folderId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"folders",
+								"{folderId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update folder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"parentId\": \"d4aa7ed0-e490-4736-ae56-d29cd1d0badb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/folders/{folderId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"folders",
+								"{folderId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get breadcrumbs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/folders/{folderId}/breadcrumbs",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"folders",
+								"{folderId}",
+								"breadcrumbs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "create tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"first\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/tags/",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"tags",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get tags",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/tags/",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"tags",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/tags/{tagId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"tags",
+								"{tagId}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Uploads",
+			"item": [
+				{
+					"name": "init upload session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fileName\": \"second\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/uploads/init",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"uploads",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/uploads/{sessionId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"uploads",
+								"{sessionId}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trash",
+			"item": [
+				{
+					"name": "get trash",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/trash/",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"trash",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/trash//files/{fileId}/restore",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"trash",
+								"",
+								"files",
+								"{fileId}",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore folder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/trash/folders/{folderId}/restore",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"trash",
+								"folders",
+								"{folderId}",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permanentDelete file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/trash/files/{fileId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"trash",
+								"files",
+								"{fileId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "permanentDelete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/trash/folders/{folderId}",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"trash",
+								"folders",
+								"{folderId}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Storage",
+			"item": [
+				{
+					"name": "get storage usage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/storage/usage",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"storage",
+								"usage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Get Test Token (Supabase Signup)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"authToken\", response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"choppersa@hotmail.com\",\r\n  \"password\": \"strongpassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{supabaseUrl}}auth/v1/signup",
+							"host": [
+								"{{supabaseUrl}}auth"
+							],
+							"path": [
+								"v1",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Token (Supabase Login)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"authToken\", response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"choppersa@hotmail.com\",\r\n  \"password\": \"strongpassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{supabaseUrl}}auth/v1/token?grant_type=password",
+							"host": [
+								"{{supabaseUrl}}auth"
+							],
+							"path": [
+								"v1",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

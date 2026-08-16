@@ -1,0 +1,60 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: cloudbox
+          POSTGRES_PASSWORD: cloudbox
+          POSTGRES_DB: cloudbox_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://cloudbox:cloudbox@localhost:5432/cloudbox_test
+      DIRECT_URL: postgresql://cloudbox:cloudbox@localhost:5432/cloudbox_test
+      # Dummy values -- nothing in the test suite makes real network calls to
+      # Supabase or AWS (both are mocked at the module level in every test
+      # that touches them), but authMiddleware/s3 clients construct URLs and
+      # SDK clients at import time, so these need to be *present*, not real.
+      SUPABASE_URL: https://dummy-project.supabase.co
+      AWS_REGION: eu-north-1
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
+      AWS_BUCKET_NAME: dummy-bucket
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npx vitest run tests/unit
+
+      - name: Apply database migrations
+        run: npx prisma migrate deploy
+
+      - name: Run integration tests
+        run: npx vitest run --config vitest.integration.config.js tests/integration
