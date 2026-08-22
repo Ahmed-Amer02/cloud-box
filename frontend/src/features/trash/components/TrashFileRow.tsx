@@ -18,7 +18,9 @@ function TrashFileRow({ file, isRestoring, onRestore, onPermanentDelete }: Props
         <FileIcon className="h-4 w-4 shrink-0 text-ink-muted" />
         <span className="truncate text-sm text-ink">{file.name}</span>
       </div>
-      <span className="shrink-0 font-mono text-xs text-ink-muted">{formatBytes(file.size)}</span>
+      <span className="shrink-0 font-mono text-xs text-ink-muted">
+        {formatBytes(file.size)} · {formatDate(file.createdAt)}
+      </span>
       <Button variant="ghost" size="sm" disabled={isRestoring} onClick={() => onRestore(file)}>
         <RotateCcw className="h-3.5 w-3.5" /> Restore
       </Button>

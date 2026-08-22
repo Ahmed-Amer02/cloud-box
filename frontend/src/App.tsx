@@ -1,20 +1,33 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { AuthProvider } from '@/features/auth/AuthContext';
 import ProtectedRoute from '@/components/layout/ProtectedRoute';
 import PublicOnlyRoute from '@/components/layout/PublicOnlyRoute';
 import AppShell from '@/components/layout/AppShell';
-import LoginPage from '@/pages/LoginPage';
-import SignupPage from '@/pages/SignupPage';
-import FilesPage from '@/pages/FilesPage';
-import SearchPage from '@/pages/SearchPage';
-import TagsPage from '@/pages/TagsPage';
-import TrashPage from '@/pages/TrashPage';
 import { Toaster } from '@/components/ui/sonner';
+
+
+const LoginPage = lazy(() => import('@/pages/LoginPage'));
+const SignupPage = lazy(() => import('@/pages/SignupPage'));
+const FilesPage = lazy(() => import('@/pages/FilesPage'));
+const SearchPage = lazy(() => import('@/pages/SearchPage'));
+const TagsPage = lazy(() => import('@/pages/TagsPage'));
+const TrashPage = lazy(() => import('@/pages/TrashPage'));
+
+
+function PageFallback() {
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <p className="text-sm text-ink-muted">Loading…</p>
+    </div>
+  );
+}
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+       <Suspense fallback={<PageFallback />}>
         <Routes>
           <Route element={<PublicOnlyRoute />}>
             <Route path="/login" element={<LoginPage />} />
@@ -34,6 +47,7 @@ function App() {
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        </Suspense>
         <Toaster />
       </AuthProvider>
     </BrowserRouter>
