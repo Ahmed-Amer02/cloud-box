@@ -10,8 +10,6 @@ A full-stack cloud storage app — think a stripped-down Google Drive/Dropbox cl
 
 ## What this project demonstrates
 
-This isn't a CRUD tutorial project. A few things worth an interviewer's attention specifically:
-
 - **True streaming uploads** — files are piped directly from the incoming HTTP request to S3 via multipart upload, with size limits and MIME-type validation (via magic-byte sniffing, not trusting the client's declared `Content-Type`) enforced *as data flows*, never buffering a whole file in memory.
 - **Race-safe upload session claiming** — concurrent requests to the same upload session are resolved atomically at the database level (`updateMany` with a status guard), not with a read-then-write pattern that could double-process a session.
 - **A trash/recycle-bin system with correct cascade behavior** — trashing a folder cascades to its contents, but an item trashed independently *before* its parent is protected from being swept up when the parent is later permanently deleted. This required moving away from relying on the database's own foreign-key cascade (which can't distinguish "safe to cascade" from "explicitly protected") toward an application-level design that tracks original locations separately, so restored items return to exactly where they were — matching how Google Drive and Dropbox behave.
