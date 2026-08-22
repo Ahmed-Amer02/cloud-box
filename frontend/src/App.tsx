@@ -1,20 +1,42 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from '@/features/auth/AuthContext';
+import ProtectedRoute from '@/components/layout/ProtectedRoute';
+import PublicOnlyRoute from '@/components/layout/PublicOnlyRoute';
+import AppShell from '@/components/layout/AppShell';
+import LoginPage from '@/pages/LoginPage';
+import SignupPage from '@/pages/SignupPage';
+import FilesPage from '@/pages/FilesPage';
+import SearchPage from '@/pages/SearchPage';
+import TagsPage from '@/pages/TagsPage';
+import TrashPage from '@/pages/TrashPage';
+import { Toaster } from '@/components/ui/sonner';
+
 function App() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-8">
-      <h1 className="font-display text-3xl font-medium text-ink">CloudBox scaffold is running</h1>
-      <p className="font-sans text-ink-muted text-sm">
-        If this text uses Space Grotesk above and IBM Plex Sans here, Tailwind and the design
-        tokens are wired up correctly.
-      </p>
-      <div className="flex gap-3">
-        <div className="w-16 h-16 rounded-card bg-accent" title="accent" />
-        <div className="w-16 h-16 rounded-card bg-accent-soft border border-border" title="accent-soft" />
-        <div className="w-16 h-16 rounded-card bg-warn-bg border border-border" title="warn-bg" />
-        <div className="w-16 h-16 rounded-card bg-success" title="success" />
-        <div className="w-16 h-16 rounded-card bg-danger" title="danger" />
-      </div>
-      <p className="font-mono text-xs text-ink-muted">1,204 KB · Aug 16, 2026</p>
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route element={<PublicOnlyRoute />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+          </Route>
+
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppShell />}>
+              <Route path="/" element={<Navigate to="/files" replace />} />
+              <Route path="/files" element={<FilesPage />} />
+              <Route path="/files/:folderId" element={<FilesPage />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/tags" element={<TagsPage />} />
+              <Route path="/trash" element={<TrashPage />} />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <Toaster />
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
